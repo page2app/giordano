@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Map</title>
+  </head>
+  <body>
+
+    <div id="map-canvas" style="height: 100%; width: 100%; left: 0; position: absolute; top: 0;">
+
+    </div>
+    <div id="loading" style="background: white; text-align: center; height: 100%; width: 100%; left: 0; position: absolute; top: 0;">
+      <img src="loader.gif" style="margin-top: 100px" />
+    </div>
+
+    <script src="http://maps.google.com/maps/api/js"></script>
+    <script src="gmap.min.js"></script>
+    <script>
+    var map = new GMaps({
+      el: '#map-canvas',
+      lat: 19.71402055,
+      lng: 96.11094654,
+      zoom: 6,
+      idle: function(){
+        document.getElementById("loading").style.setProperty("display", "none");
+      }
+    });
+
+    GMaps.geolocate({
+      success: function(position) {
+        map.setCenter(position.coords.latitude, position.coords.longitude);
+        map.setZoom(16);
+        map.addMarker({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          title: 'You Are Here',
+        });
+      },
+    });
+
+    var locations = [
+      {
+        "title": "Giordano 73 Str",
+        "lat": 21.96791239,
+        "long": 96.09496325,
+        "type": "Street Shop",
+        "address": "73 Str, Btw 35x36 Str, Aung Myay Tharzi Tsp",
+        "phone": 959977116981,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano North Point",
+        "lat": 16.88093438,
+        "long": 96.13492548,
+        "type": "Mall Outlet",
+        "address": "No. G 20, Corner of Taw Win St & Pyay Rd, Ocean Super Center, ThiriYeikthar Project, Mayangone.",
+        "phone": "+951 660100,652960-3(Ext:118)",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Yuzana Plaza (1F)",
+        "lat": 16.7942959,
+        "long": 96.1757971,
+        "type": "Mall Outlet",
+        "address": "No. 121-126, First Floor,  Yuzana Plaza.",
+        "phone": 959977116954,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Capital Hypermarket",
+        "lat": 16.8666582,
+        "long": 96.1845893,
+        "type": "Mall Outlet",
+        "address": "No.14-E , Minnadar Rd, Capital Hypermarket, Dawbon.",
+        "phone": "+951 553136",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Dagon Center II",
+        "lat": 16.8045095,
+        "long": 96.1375804,
+        "type": "Mall Outlet",
+        "address": "L 2 (10) ,First Floor , Dagon Centre II , Pyay Rd, Sanchaung.",
+        "phone": 959977116956,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Great Wall",
+        "lat": 21.97265839,
+        "long": 96.08709365,
+        "type": "Mall Outlet",
+        "address": "A 2 ,Between 32-33 St , 78 Rd, Great Wall Shopping Centre, Mandalay.",
+        "phone": "+952 66921,02-68239(106)",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Latha",
+        "lat": 16.77480131,
+        "long": 96.14966961,
+        "type": "Street Shop",
+        "address": "No. 680, Groudn Floor, Maharbandoola Rd, Latha Township, Yangon",
+        "phone": "+951 250765",
+        "operation_hours": "9:00 AM to 10:00 PM"
+      },
+      {
+        "title": "Giordano HAGL, Myanmar Plaza",
+        "lat": 16.82742277,
+        "long": 96.15523517,
+        "type": "Mall Outlet",
+        "address": "Myanmar Plaza. HAGL Group.",
+        "phone": 959264805203,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Hledan Center",
+        "lat": 16.8257796,
+        "long": 96.1304998,
+        "type": "Mall Outlet",
+        "address": "Hledan Center, Ground Floor, Kamayut Township.",
+        "phone": 959254125466,
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Hledan",
+        "lat": 16.82793623,
+        "long": 96.13018336,
+        "type": "Street Shop",
+        "address": "15(B/C/1), Corner of the U Tun Lin Chan Street, Yangon Insein Rd, Hledan, Kamaryut.",
+        "phone": 959977116958,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Junction Square",
+        "lat": 16.817141,
+        "long": 96.1309958,
+        "type": "Mall Outlet",
+        "address": "Ground Floor, Junction Square,Kamaryut .",
+        "phone": 959780404995,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Kabaraye Gamone Pwint",
+        "lat": 16.8563505,
+        "long": 96.1575784,
+        "type": "Mall Outlet",
+        "address": "No.300, Gamonepwint Shopping Centre, Kabaraye Pagoda Rd, Mayangone",
+        "phone": "+951 653653 , 653652, 653655",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano 62 Str",
+        "lat": 21.93788554,
+        "long": 96.110681,
+        "type": "Street Shop",
+        "address": "No(150),Between of dayliyar st -Zalatwar st,62 St, Mandalay.",
+        "phone": "+952 80004",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano 26 Str",
+        "lat": 21.98343829,
+        "long": 96.0822174,
+        "type": "Street Shop",
+        "address": "No.213(26)B Rd, Between of 81-82 St,Mandalay.",
+        "phone": "+959 91008704,02-30541",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Yuzana Plaza (GF)",
+        "lat": 16.7942959,
+        "long": 96.1757971,
+        "type": "Mall Outlet",
+        "address": "No (S-26), Ground Floor, Yuzana Plaza .",
+        "phone": 959977116953,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Junction 8",
+        "lat": 16.865036,
+        "long": 96.1408522,
+        "type": "Mall Outlet",
+        "address": "G-02 , Junction (8) Shopping Centre",
+        "phone": 959977116959,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Junction Maw Tin",
+        "lat": 16.7778214,
+        "long": 96.1418322,
+        "type": "Street Shop",
+        "address": "No.202/203, Second Floor,  Junction Mawtin .",
+        "phone": 959977116955,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Monywa",
+        "lat": 22.11289213,
+        "long": 95.1361084,
+        "type": "Street Shop",
+        "address": "Monywa GIORDANO at the Corner of Kyakyar Street and Bayar gyi Street (Su Lay Kone Qttr)",
+        "phone": "+959-979366855",
+        "operation_hours": "8:00 AM to 8:30 PM"
+      },
+      {
+        "title": "Giordano Junction Naypyitaw",
+        "lat": 19.71402055,
+        "long": 96.11094654,
+        "type": "Mall Outlet",
+        "address": "No. 208, Junction Naypyiaw, Yazathingaha Rd, infront of Hotel Zone, Naypyitaw.",
+        "phone": "+959 401538766,067-421617(218)",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Parkson",
+        "lat": 16.7798796,
+        "long": 96.1566031,
+        "type": "Mall Outlet",
+        "address": "No.380, Level- 5, Bogyoke Aung San Rd, FMI Centre, Pabedan",
+        "phone": "-",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano 35x36",
+        "lat": 16.77686984,
+        "long": 96.16108368,
+        "type": "Street Shop",
+        "address": "No. 140, Anawyahta Rd, corner of (36) st; Kayuktada.",
+        "phone": 959977116951,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Sule",
+        "lat": 16.77689939,
+        "long": 96.15965344,
+        "type": "Street Shop",
+        "address": "No.180, Ground Floor, Anawyahta Rd,Kyauktada.",
+        "phone": 959977116950,
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordani Taunggyi",
+        "lat": 20.78096235,
+        "long": 97.03650445,
+        "type": "Street Shop",
+        "address": "No. 37 - 38, Infront of No(1),Police Station, Taunggyi.",
+        "phone": "+9581 24470",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Taw Win Center",
+        "lat": 16.7851471,
+        "long": 96.1421776,
+        "type": "Mall Outlet",
+        "address": "No.45 ,Tawin  Centre, Pyay Road, Dagon",
+        "phone": "+959-8600002-10/09-8600111(Ext:1002-1003)",
+        "operation_hours": "9:00 AM to 9:00 PM"
+      },
+      {
+        "title": "Giordano Pyay",
+        "lat": 18.8406029,
+        "long": 18.8406029,
+        "type": "Street Shop",
+        "address": "No.15-16, Meeyahta Quarter,Lanmadaw St,Pyay.",
+        "phone": 959977116985,
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Myeik",
+        "lat": 12.4492291,
+        "long": 98.6270628,
+        "type": "Street Shop",
+        "address": "No.5,Baho Str,Kankhaung Yat,Myeik.",
+        "phone": "059-41900/'+95971221567",
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Dewai",
+        "lat": 14.082769,
+        "long": 98.193961,
+        "type": "Street Shop",
+        "address": "No.(44-A),Bogyoke Str,Dewai Giordano at the near by Tha Har Ya Tea Shop, Anount City,Dewai",
+        "phone": 959977651761,
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Myitkyina",
+        "lat": 25.3946143,
+        "long": 97.3840729,
+        "type": "Street Shop",
+        "address": "No(2),Taineyintarsilonenyinyutyal Party Building,Thakhinnatphya St,Myeikkyinar",
+        "phone": "+9574-29202",
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Pyin Oo Lwin",
+        "lat": 22.0391773,
+        "long": 96.471658,
+        "type": "Street Shop",
+        "address": "Ya Ka Ka (4), No. (137/ D-1), Mandalya - Lashio Rd,Pyinoolwin",
+        "phone": "+959-259053223",
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Pathein",
+        "lat": 16.7753609,
+        "long": 94.7381013,
+        "type": "Street Shop",
+        "address": "Room No. 146, Ya Ya Ka (4)Qty; Shwe Zaydi Street, Pathein.",
+        "phone": "+959-259053223",
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Bago",
+        "lat": 17.3220711,
+        "long": 96.4663286,
+        "type": "Street Shop",
+        "address": "No.425,Sit Mu Htaung Haung Yat,Min Road,Bago.",
+        "phone": 959781110906,
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Myingyan",
+        "lat": 21.4662223,
+        "long": 95.38872,
+        "type": "Street Shop",
+        "address": "No.98 A , Bogyoke Road , 8 Quarter , Myingyan",
+        "phone": 959967772676,
+        "operation_hours": ""
+      },
+      {
+        "title": "Giordano Skywalk",
+        "lat": 21.9588282,
+        "long": 96.0891032,
+        "type": "Street Shop",
+        "address": "Skywalk Shopping Mall, Mandalay.",
+        "phone": "-",
+        "operation_hours": ""
+      }
+    ];
+    for (var i = 0; i < locations.length; i++) {
+      map.addMarker({
+        lat: locations[i].lat,
+        lng: locations[i].long,
+        title: locations[i].title,
+        infoWindow: {
+          content: '<h1>'+ locations[i].title +'</h1> <p>' + locations[i].address + '</p>'
+        },
+        icon : {
+          size : new google.maps.Size(41, 47),
+          url : 'gio-marker.png'
+        }
+      });
+    }
+
+
+  </script>
+  </body>
+</html>
